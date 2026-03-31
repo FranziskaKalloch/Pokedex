@@ -4,10 +4,102 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    <link rel="stylesheet" href="./styles.style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/card.css" />
 
     <script src="./scripts/data.js" defer></script>
     <script src="./scripts/main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header class="main-header">
+      <div class="header-frame">
+        <div>
+          <img src="./assets/img/pokeball.svg" alt="Pokédex Logo" class="logo" />
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search Pokemon" />
+          <button>Search</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="content-frame">
+        <!---CONTENT ----->
+        <section id="pokedexContainer" class="pokedex-container">
+          <div class="mini-card">
+            <header class="card-header">
+              <span class="pokemon-id">#1</span>
+              <h3>Pokemon Name</h3>
+            </header>
+            <div class="card-img"></div>
+            <footer class="card-footer">
+              <div class="type-container">
+                <span>type</span>
+              </div>
+            </footer>
+          </div>
+        </section>
+
+        <div>
+          <button>Show More</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="main-footer"></footer>
+
+    <!-- DIALOG ------>
+    <dialog class="pokemon-dialog" open>
+      <div class="dialog-card">
+        <div class="dialog-left-side">
+          <img src="./assets/img/Pokemon_Logo.jpg" alt="Pokemon Bild" />
+        </div>
+        <div class="dialog-right-side">
+          <header class="dialog-header">
+            <div class="dialog-title">
+              <span class="pokemon-dialog-id">#</span>
+              <h2 class="pokemon-dialog-name">Name</h2>
+            </div>
+
+            <button class="close-btn">×</button>
+          </header>
+          <div class="dialog-tabs">
+            <button class="tab-btn active">Main</button>
+            <button class="tab-btn">Stats</button>
+            <button class="tab-btn">Evolution</button>
+          </div>
+
+          <div class="dialog-tab-content active">
+            <div class="pokemon-description">Nach der Geburt nutzt es für eine Weile die Nährstoffe im Samen auf seinem Rücken, um zu wachsen.</div>
+
+            <div class="pokemon-info-list">
+              <div class="info-row">
+                <span class="info-label">Größe</span>
+                <span class="info-value">70 cm</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Gewicht</span>
+                <span class="info-value">6,9 kg</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Kategorie</span>
+                <span class="info-value">Samen</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Fähigkeiten</span>
+                <span class="info-value">Notdünger</span>
+              </div>
+            </div>
+          </div>
+          <div class="type-container">
+            <span class="type">type</span>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  </body>
 </html>
