@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: rgb(142, 200, 173); /* Main Bereich - Miniaturansicht Hintergrundfarbe */
+  --secondary-color: rgb(79, 131, 105); /* Footer/Header */
+  --accent-color: rgb(214, 103, 110); /* Akzent */
+
+  --card-color: rgb(234, 243, 251); /* Card Main Color */
+
+  /* Buttons */
+  --btn-primary: rgb(214, 103, 110); /* Hauptbutton */
+  --btn-hover: rgb(190, 80, 90); /* etwas dunkler */
+  --btn-text: rgb(234, 243, 251);
+}
+
+button {
+  background-color: var(--btn-primary);
+  color: var(--btn-text);
+
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--btn-hover);
+}
