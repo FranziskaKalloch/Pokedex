@@ -30,12 +30,16 @@
       <div class="content-frame">
         <!---CONTENT ----->
         <section id="pokedexContainer" class="pokedex-container">
-          <div class="mini-card">
+          <div class="mini-card" onclick="openDialog()">
+            <div class="card-img-container">
+              <img src="./assets/img/go-aquanal.png" class="card-img" />
+            </div>
+
             <header class="card-header">
               <span class="pokemon-id">#1</span>
               <h3>Pokemon Name</h3>
             </header>
-            <div class="card-img"></div>
+
             <footer class="card-footer">
               <div class="type-container">
                 <span>type</span>
@@ -53,10 +57,10 @@
     <footer class="main-footer"></footer>
 
     <!-- DIALOG ------>
-    <dialog class="pokemon-dialog" open>
+    <dialog class="pokemon-dialog" id="pokemonDialog">
       <div class="dialog-card">
         <div class="dialog-left-side">
-          <img src="./assets/img/Pokemon_Logo.jpg" alt="Pokemon Bild" />
+          <img src="./assets/img/go-aquanal.png" alt="Pokemon Bild" />
         </div>
         <div class="dialog-right-side">
           <header class="dialog-header">
@@ -65,7 +69,7 @@
               <h2 class="pokemon-dialog-name">Name</h2>
             </div>
 
-            <button class="close-btn">×</button>
+            <button class="close-btn" onclick="closeDialog()">×</button>
           </header>
           <div class="dialog-tabs">
             <button class="tab-btn active">Main</button>
