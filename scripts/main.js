@@ -1,5 +1,20 @@
+let allPokemon = [];
+
+let loadedPokemon = [];
+
 function init() {
   console.log('Pokedex startet');
+  getPokemon();
+}
+
+async function getPokemon() {
+  try {
+    let response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.warn('Server ist gerade offline');
+  }
 }
 
 function openDialog() {

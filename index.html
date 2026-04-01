@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/card.css" />
 
-    <script src="./scripts/data.js" defer></script>
-    <script src="./scripts/api.js"></script>
     <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/template.js" defer></script>
 
     <link rel="icon" type="image/png" href="./assets/icon/favicon.png" />
   </head>
@@ -29,24 +28,7 @@
     <main>
       <div class="content-frame">
         <!---CONTENT ----->
-        <section id="pokedexContainer" class="pokedex-container">
-          <div class="mini-card" onclick="openDialog()">
-            <div class="card-img-container">
-              <img src="./assets/img/go-aquanal.png" class="card-img" />
-            </div>
-
-            <header class="card-header">
-              <span class="pokemon-id">#1</span>
-              <h3>Pokemon Name</h3>
-            </header>
-
-            <footer class="card-footer">
-              <div class="type-container">
-                <span>type</span>
-              </div>
-            </footer>
-          </div>
-        </section>
+        <section id="pokedexContainer" class="pokedex-container"></section>
 
         <div>
           <button>Show More</button>
@@ -54,7 +36,10 @@
       </div>
     </main>
 
-    <footer class="main-footer"></footer>
+    <footer class="main-footer">
+      <h2>Pokedex</h2>
+      <a href="#">Impressum</a>
+    </footer>
 
     <!-- DIALOG ------>
     <dialog class="pokemon-dialog" id="pokemonDialog">

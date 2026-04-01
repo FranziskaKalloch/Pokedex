@@ -1,9 +1,11 @@
 .pokedex-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+
+  gap: 16px;
 }
 
 .mini-card {
