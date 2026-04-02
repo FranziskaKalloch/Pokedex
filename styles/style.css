@@ -21,6 +21,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  font-family: 'Poppins', sans-serif;
 }
 
 main {
@@ -45,7 +46,9 @@ button:hover {
   background-color: var(--btn-hover);
 }
 
-.header-frame {
+.header-frame,
+.footer-frame {
+  width: 1920px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,11 +58,9 @@ button:hover {
 .main-footer {
   background-color: var(--secondary-color);
   padding: 32px;
-}
 
-.main-footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   color: white;
 }
 
@@ -89,6 +90,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   gap: 64px;
 

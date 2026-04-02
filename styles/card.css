@@ -53,7 +53,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 8px;
+  gap: 12px;
 }
 
 /* DIALOG */
@@ -184,40 +184,42 @@
   width: 120px;
 }
 
-.type-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .type {
-  padding: 4px 12px;
+  padding: 4px 16px;
   border-radius: 999px;
 
   font-size: 12px;
   text-transform: uppercase;
 }
 
-.type.grass {
-  background-color: #7ac74c;
+.bug {
+  background-color: rgb(114, 159, 63);
 }
 
-.type.fire {
-  background-color: #ee8130;
+.grass {
+  background-color: rgb(143, 194, 140);
 }
 
-.type.water {
-  background-color: #6390f0;
+.fire {
+  background-color: rgb(227, 126, 82);
 }
 
-.type.poison {
-  background-color: #a33ea1;
+.flying {
+  background-color: rgb(61, 199, 238);
 }
 
-.type.electric {
+.water {
+  background-color: rgb(164, 181, 214);
+}
+
+.poison {
+  background-color: rgb(184, 126, 201);
+}
+
+.electric {
   background-color: #f7d02c;
 }
 
-.type.normal {
-  background-color: #a8a77a;
+.normal {
+  background-color: rgb(227, 209, 181);
 }
