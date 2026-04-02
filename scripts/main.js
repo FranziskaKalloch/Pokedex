@@ -9,11 +9,25 @@ function init() {
 
 async function getPokemon() {
   try {
-    let response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
-    let data = await response.json();
-    console.log(data);
+    for (let index = 1; index <= 20; index++) {
+      let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+      let singlePokemon = await response.json();
+      loadedPokemon.push(singlePokemon);
+    }
   } catch (error) {
     console.warn('Server ist gerade offline');
+  }
+  renderPokemon();
+}
+
+function renderPokemon() {
+  let pokedexRef = document.getElementById('pokedexContainer');
+  pokedexRef.innerHTML = '';
+
+  for (let index = 0; index < loadedPokemon.length; index++) {
+    const singlePokemon = loadedPokemon[index];
+
+    pokedexRef.innerHTML += `${getMiniCardTemplate()}`;
   }
 }
 

@@ -17,6 +17,19 @@
   --btn-text: rgb(234, 243, 251);
 }
 
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  background-color: var(--primary-color);
+}
+
 button {
   background-color: var(--btn-primary);
   color: var(--btn-text);

@@ -1,4 +1,4 @@
-function getMiniCardTemplate(p) {
+function getMiniCardTemplate() {
   return `
         <div class="mini-card" onclick="openDialog()">
             <div class="card-img-container">
