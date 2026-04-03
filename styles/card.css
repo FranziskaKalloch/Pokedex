@@ -58,6 +58,10 @@
 
 /* DIALOG */
 
+dialog {
+  position: relative;
+}
+
 .pokemon-dialog {
   border: none;
   padding: 0;
@@ -75,12 +79,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.dialog-main {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
 .dialog-card {
   display: flex;
+  flex-direction: column;
 
   gap: 16px;
-  width: 800px;
-  height: 450px;
+  width: 900px;
+  height: 550px;
 
   border-radius: 16px;
   padding: 8px;
@@ -185,11 +196,62 @@
 }
 
 .type {
-  padding: 4px 16px;
+  width: 100px;
+  height: 30px;
+  padding: 8px;
   border-radius: 999px;
 
-  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 16px;
   text-transform: uppercase;
+}
+
+.dialog-nav {
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgb(235, 235, 235);
+}
+
+.dialog-nav img {
+  width: 32px;
+  height: auto;
+}
+
+.nav-btn {
+  flex: 1;
+  height: 64px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+
+  background-color: rgb(235, 235, 235);
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-left img {
+  transform: rotate(180deg);
+}
+
+.nav-btn img {
+  filter: brightness(0);
+}
+
+.nav-btn:hover img {
+  filter: brightness(0) invert(1);
 }
 
 .bug {

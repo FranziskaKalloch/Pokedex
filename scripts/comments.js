@@ -54,7 +54,7 @@ function renderTypes(types) {
 
   for (let index = 0; index < types.length; index++) {
     const eachType = types[index];
-    typeHTML += `<span class="type">${eachType.type.name}</span>`;
+    typeHTML += `<span class="type ${eachType.type.name}" ${eachType.type.name}</span>`;
   }
 
   return typeHTML;
@@ -69,10 +69,97 @@ function renderTypes(types) {
 // WARUM -----> die Funktion muss im Template aufgerufen werden, daher renderTypes
 // -----------> Die Funktion erwartet einen Parameter mit Types
 
-// 7. Später weitere Pokémon per Button nachladen
-// 8. Später eine Detailansicht im Overlay öffnen
+//	8.	Farben an Typen koppeln
+// --->     typeHTML += `<span class="type ${eachType.type.name}" ${eachType.type.name}</span>`;
+// mit dieser Zeile habe ich den span Elementen zwei Klassen mitgegeben, die klasse type
+// und den jeweiligen typen, also grass, electric - es wird ja durch die Namen iteriert
 
-//	2.	Overlay / Detailansicht bauen
-//	3.	Farben an Typen koppeln
-//	4.	Show-More-Button
-//	5.	Filterfunktion / Suche zum Schluss
+//	9.	Overlay / Detailansicht bauen
+// ----> Es muss der Index mitgegeben werden, damit JS weiß auf welchen Pokemon gerade geklickt wurde.
+// ---> "Nimm das Pokemon an der Position 7"
+
+function renderPokemon() {
+  pokedexRef.innerHTML += `${getMiniCardTemplate(currentPokemon, index)}`;
+}
+
+function renderOverlay(index) {
+  let clickedPokemon = loadedPokemon[index];
+  let height = clickedPokemon.height * 10;
+  let weight = clickedPokemon.weight / 10;
+  let dialogRef = document.getElementById('pokemonDialog');
+  dialogRef.innerHTML = `${getOverlayHtml(clickedPokemon, height, weight)}`;
+}
+
+function openDialog(index) {
+  const dialog = document.getElementById('pokemonDialog');
+  renderOverlay(index);
+  dialog.showModal();
+}
+
+//	•	Overlay sauber schließen
+
+function closeDialogOutside(event) {
+  let dialog = document.getElementById('pokemonDialog');
+
+  if (event.target === dialog) {
+    dialog.close();
+  }
+}
+
+//	•	Overlay-Navigation vor/zurück
+
+function openDialog(index) {
+  currentIndex = index;
+  const dialog = document.getElementById('pokemonDialog');
+  renderOverlay(index);
+  dialog.showModal();
+}
+
+function nextPokemon() {
+  currentIndex++;
+
+  if (currentIndex >= loadedPokemon.length) {
+    currentIndex = 0;
+  }
+
+  renderOverlay(currentIndex);
+}
+
+function prevPokemon() {
+  currentIndex--;
+
+  if (currentIndex < 0) {
+    currentIndex = loadedPokemon.length - 1;
+  }
+  renderOverlay(currentIndex);
+}
+
+//	•	Show-More-Button
+
+let eachLoad = 20; // Anzahl pro Ladevorgang
+let nextPokemons = 21; // Startwert
+
+async function getPokemon() {
+  try {
+    for (let index = 1; index <= 20; index++) {
+      let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+      let fetchedPokemon = await response.json();
+      loadedPokemon.push(fetchedPokemon);
+    }
+  } catch (error) {
+    console.warn('Server ist gerade offline');
+  }
+  renderPokemon();
+}
+
+//	•	Loaded Spinner
+
+//	•	Typ-Farben an Karten/Overlay koppeln
+//	•	Kategorie/Beschreibung über Species-Daten
+
+//	•	Filter/Suche als letzter Schritt
+
+//	•	Fehlerfälle
+//	•	Responsiveness
+//	•	kleine UI-Bugs
+//	•	saubere Funktionsstruktur

@@ -1,6 +1,11 @@
 let allPokemon = [];
-
 let loadedPokemon = [];
+let currentIndex = 0;
+
+let eachLoad = 20; // Anzahl pro Ladevorgang
+let nextPokemons = 21; // Startwert
+
+console.log(loadedPokemon);
 
 function init() {
   console.log('Pokedex startet');
@@ -20,14 +25,14 @@ async function getPokemon() {
   renderPokemon();
 }
 
-function renderPokemon(currentPokemon) {
+function renderPokemon() {
   let pokedexRef = document.getElementById('pokedexContainer');
   pokedexRef.innerHTML = '';
 
   for (let index = 0; index < loadedPokemon.length; index++) {
     const currentPokemon = loadedPokemon[index];
 
-    pokedexRef.innerHTML += `${getMiniCardTemplate(currentPokemon)}`;
+    pokedexRef.innerHTML += `${getMiniCardTemplate(currentPokemon, index)}`;
   }
 }
 
@@ -42,9 +47,56 @@ function renderTypes(types) {
   return typeHTML;
 }
 
-function openDialog() {
+function renderOverlay(index) {
+  let clickedPokemon = loadedPokemon[index];
+  let height = clickedPokemon.height * 10;
+  let weight = clickedPokemon.weight / 10;
+  let dialogRef = document.getElementById('pokemonDialog');
+  dialogRef.innerHTML = `${getOverlayHtml(clickedPokemon, height, weight)}`;
+}
+
+function openDialog(index) {
+  currentIndex = index;
   const dialog = document.getElementById('pokemonDialog');
+  renderOverlay(index);
   dialog.showModal();
+}
+
+function nextPokemon() {
+  currentIndex++;
+
+  if (currentIndex >= loadedPokemon.length) {
+    currentIndex = 0;
+  }
+
+  renderOverlay(currentIndex);
+}
+
+function prevPokemon() {
+  currentIndex--;
+
+  if (currentIndex < 0) {
+    currentIndex = loadedPokemon.length - 1;
+  }
+  renderOverlay(currentIndex);
+}
+
+async function showMore() {
+  let pokedexRef = document.getElementById('pokedexContainer');
+  pokedexRef.innerHTML = getLoadingHTML();
+
+  try {
+    for (let index = nextPokemons; index < nextPokemons + eachLoad; index++) {
+      let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+      let fetchedPokemon = await response.json();
+      loadedPokemon.push(fetchedPokemon);
+    }
+  } catch (error) {
+    console.warn('Server ist gerade offline');
+  }
+
+  nextPokemons = nextPokemons + eachLoad;
+  renderPokemon();
 }
 
 function closeDialog() {
@@ -52,11 +104,10 @@ function closeDialog() {
   dialog.close();
 }
 
-console.log(loadedPokemon);
+function closeDialogOutside(event) {
+  let dialog = document.getElementById('pokemonDialog');
 
-//	1.	init()
-//	2.	Pokémon-Daten laden
-//	3.	Daten verarbeiten
-//	4.	Karten rendern
-//	5.	Button für mehr laden
-//	6.	Overlay öffnen
+  if (event.target === dialog) {
+    dialog.close();
+  }
+}
