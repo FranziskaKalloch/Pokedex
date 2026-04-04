@@ -5,6 +5,8 @@ let currentIndex = 0;
 let eachLoad = 20; // Anzahl pro Ladevorgang
 let nextPokemons = 21; // Startwert
 
+let pokedexRef = document.getElementById('pokedexContainer');
+
 console.log(loadedPokemon);
 
 function init() {
@@ -26,7 +28,6 @@ async function getPokemon() {
 }
 
 function renderPokemon() {
-  let pokedexRef = document.getElementById('pokedexContainer');
   pokedexRef.innerHTML = '';
 
   for (let index = 0; index < loadedPokemon.length; index++) {
@@ -82,7 +83,6 @@ function prevPokemon() {
 }
 
 async function showMore() {
-  let pokedexRef = document.getElementById('pokedexContainer');
   pokedexRef.innerHTML = getLoadingHTML();
 
   try {
@@ -97,6 +97,38 @@ async function showMore() {
 
   nextPokemons = nextPokemons + eachLoad;
   renderPokemon();
+}
+
+function filterPokemon() {
+  let inputField = document.getElementById('input');
+  let inputValue = inputField.value.toLowerCase();
+  let filteredPokemon = [];
+
+  if (inputValue.length < 3) {
+    return renderPokemon();
+  }
+
+  for (let index = 0; index < loadedPokemon.length; index++) {
+    let currentPokemon = loadedPokemon[index];
+
+    if (currentPokemon.name.toLowerCase().startsWith(inputValue)) {
+      filteredPokemon.push(currentPokemon);
+    }
+  }
+
+  renderPokemon(filteredPokemon);
+}
+
+  //	wenn input weniger als 3 Zeichen hat:
+  //  zeige alle geladenen Pokémon
+
+  //sonst:
+  //  filtere loadedPokemon
+  //  behalte nur Pokémon,
+  //  deren Name mit dem Suchtext beginnt
+
+  //danach:
+  //  rendere das Ergebnis
 }
 
 function closeDialog() {

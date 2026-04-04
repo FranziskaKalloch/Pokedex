@@ -154,10 +154,15 @@ async function getPokemon() {
 
 //	•	Loaded Spinner
 
-//	•	Typ-Farben an Karten/Overlay koppeln
-//	•	Kategorie/Beschreibung über Species-Daten
+async function showMore() {
+  let pokedexRef = document.getElementById('pokedexContainer');
+  pokedexRef.innerHTML = getLoadingHTML();
+}
 
 //	•	Filter/Suche als letzter Schritt
+
+//	•	Typ-Farben an Karten/Overlay koppeln
+//	•	Kategorie/Beschreibung über Species-Daten
 
 //	•	Fehlerfälle
 //	•	Responsiveness
